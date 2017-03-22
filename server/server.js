@@ -18,10 +18,12 @@ app.post("/todos",(req,res)=>{
 		text:req.body.text
 	});
 
-todo.save().then((doc)=>{
+	todo.save().then((doc)=>{
 		console.log("saved new record..",doc);
 		res.send(doc);
 	}).catch(function(err){
-		console.log(err);
+		res.status(400).send(err);
 	});
 });
+
+module.exports.app = app;
